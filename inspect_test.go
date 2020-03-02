@@ -7,4 +7,8 @@ func TestTypeOf(t *testing.T) {
 	if typ == nil {
 		t.Error("runtime.g not found")
 	}
+	typ = TypeOf("*runtime.g")
+	if typ == nil {
+		t.Error("*runtime.g not found")
+	}
 }

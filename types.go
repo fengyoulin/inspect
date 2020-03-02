@@ -20,10 +20,9 @@ func init() {
 		rodata := sections[i]
 		for _, off := range offs {
 			face.data = resolveTypeOff(rodata, off)
-			if typ.Kind() == reflect.Ptr && len(typ.Elem().PkgPath()) > 0 && len(typ.Elem().Name()) > 0 {
-				elemType := typ.Elem()
-				pkgPath, name := elemType.PkgPath(), elemType.Name()
-				types[pkgPath+"."+name] = elemType
+			if typ.Kind() == reflect.Ptr && len(typ.Elem().Name()) > 0 {
+				types[typ.String()] = typ
+				types[typ.Elem().String()] = typ.Elem()
 			}
 		}
 	}
