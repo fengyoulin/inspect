@@ -7,6 +7,7 @@ import (
 
 // TypeOf find the type by package path and name
 func TypeOf(pathName string) reflect.Type {
+	initTypes()
 	if typ, ok := types[pathName]; ok {
 		return typ
 	}
@@ -15,6 +16,7 @@ func TypeOf(pathName string) reflect.Type {
 
 // Types return all types in typelinks
 func Types() (ts [][]reflect.Type) {
+	initTypes()
 	typ := reflect.TypeOf(0)
 	face := (*iface)(unsafe.Pointer(&typ))
 	sections, offset := typelinks()
